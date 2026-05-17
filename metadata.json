@@ -1,0 +1,8 @@
+{
+  "name": "Appartement Geraardsbergen - 128.2m² Luxe",
+  "description": "Luxe appartement in centrum Geraardsbergen, 128.2m² woonoppervlakte met 2 slaapkamers en ruim zuidgericht terras.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
