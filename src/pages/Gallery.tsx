@@ -372,8 +372,8 @@ export default function Gallery() {
   const currentDisplayImages = imageList;
 
   return (
-    <div className="py-24 px-6 max-w-7xl mx-auto bg-slate-50 min-h-screen">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 border-b border-slate-200 pb-8 space-y-6 md:space-y-0">
+    <div className="py-8 px-6 max-w-7xl mx-auto bg-slate-50 min-h-screen">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-4 border-b border-slate-200 pb-8 space-y-6 md:space-y-0">
         <div>
           <span className="text-primary-600 font-bold uppercase text-xs tracking-widest mb-2 block">Impressie</span>
           <div className="flex items-center space-x-4">

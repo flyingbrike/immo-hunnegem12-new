@@ -9,19 +9,41 @@ export default function Contact() {
     e.preventDefault();
     setStatus('sending');
     
-    // Simuleer een API call
-    setTimeout(() => {
-      setStatus('success');
-    }, 2000);
+    try {
+      const formData = new FormData(e.target as HTMLFormElement);
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message'),
+      };
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error('Contact error:', error);
+      setStatus('error');
+    }
   };
 
   return (
-    <div className="py-24 px-6 max-w-7xl mx-auto bg-slate-50 min-h-screen">
+    <div className="py-8 px-6 max-w-7xl mx-auto bg-slate-50 min-h-screen">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
         <div>
           <span className="text-primary-600 font-bold uppercase text-xs tracking-widest mb-2 block">Neem contact op</span>
           <h1 className="serif text-5xl italic mb-8 text-slate-900 leading-tight">Interesse?<br />Plan een Afspraak</h1>
-          <p className="text-lg font-light text-slate-600 leading-relaxed mb-12">
+          <p className="text-lg font-light text-slate-600 leading-relaxed mb-4">
             Heeft u interesse in een bezichtiging of wilt u meer informatie ontvangen? Neem gerust contact met ons op. We helpen u graag verder.
           </p>
 
@@ -30,7 +52,7 @@ export default function Contact() {
               <div className="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center text-primary-600 mb-6">
                 <Phone className="w-6 h-6" />
               </div>
-              <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Telefoon</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Telefoon en whatsapp</h4>
               <p className="text-lg font-bold text-slate-800 tracking-tight">0032 (0) 475 701549</p>
             </div>
             <div className="p-8 bg-white rounded-2xl shadow-sm border border-slate-200">
@@ -72,16 +94,16 @@ export default function Contact() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-[10px] font-black uppercase tracking-widest text-primary-300/60">Naam</label>
-                    <input required type="text" className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm placeholder:text-white/20 focus:outline-none focus:border-primary-400 focus:bg-white/10 transition-all font-light" placeholder="Uw naam" />
+                    <input required name="name" type="text" className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm placeholder:text-white/20 focus:outline-none focus:border-primary-400 focus:bg-white/10 transition-all font-light" placeholder="Uw naam" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] font-black uppercase tracking-widest text-primary-300/60">Email</label>
-                    <input required type="email" className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm placeholder:text-white/20 focus:outline-none focus:border-primary-400 focus:bg-white/10 transition-all font-light" placeholder="Email adres" />
+                    <input required name="email" type="email" className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm placeholder:text-white/20 focus:outline-none focus:border-primary-400 focus:bg-white/10 transition-all font-light" placeholder="Email adres" />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-primary-300/60">Onderwerp</label>
-                  <select className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:outline-none focus:border-primary-400 focus:bg-white/10 transition-all font-light appearance-none">
+                  <select name="subject" className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:outline-none focus:border-primary-400 focus:bg-white/10 transition-all font-light appearance-none">
                     <option className="text-slate-900">Ik wil een bezichtiging plannen</option>
                     <option className="text-slate-900">Ik wil technische documentatie</option>
                     <option className="text-slate-900">Algemene vraag</option>
@@ -89,7 +111,7 @@ export default function Contact() {
                 </div>
                 <div className="space-y-2 flex-grow flex flex-col">
                   <label className="text-[10px] font-black uppercase tracking-widest text-primary-300/60">Bericht</label>
-                  <textarea required rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm placeholder:text-white/20 focus:outline-none focus:border-primary-400 focus:bg-white/10 transition-all font-light resize-none flex-grow" placeholder="Schrijf hier uw bericht..."></textarea>
+                  <textarea required name="message" rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm placeholder:text-white/20 focus:outline-none focus:border-primary-400 focus:bg-white/10 transition-all font-light resize-none flex-grow" placeholder="Schrijf hier uw bericht..."></textarea>
                 </div>
                 <button 
                   type="submit"

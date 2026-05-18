@@ -1,9 +1,10 @@
 import { motion } from 'motion/react';
-import { Ruler, Home, Zap, Waves, ShieldCheck, Sun, Sparkles } from 'lucide-react';
+import { Ruler, Home, Zap, Waves, ShieldCheck, Sun, Sparkles, Car } from 'lucide-react';
 import { useState } from 'react';
 
 const specs = [
   { icon: <Ruler className="w-5 h-5" />, label: "Woonoppervlakte", value: "128.2 m²" },
+  { icon: <Car className="w-5 h-5" />, label: "Parkeren", value: "RUIME prive GARAGE 21m²" },
   { icon: <Sun className="w-5 h-5" />, label: "Dakterras", value: "40 m²" },
   { icon: <Home className="w-5 h-5" />, label: "Slaapkamers", value: "2 Slaapkamers" },
   { icon: <Zap className="w-5 h-5" />, label: "Energielabel", value: "Label B" },
@@ -34,12 +35,12 @@ export default function Technical() {
   };
 
   return (
-    <div className="py-24 px-6 max-w-7xl mx-auto bg-slate-50 min-h-screen">
-      <div className="max-w-3xl mb-16">
+    <div className="py-8 px-6 max-w-7xl mx-auto bg-slate-50 min-h-screen">
+      <div className="max-w-3xl mb-6">
         <span className="text-primary-600 font-bold uppercase text-xs tracking-widest mb-2 block">Specifications</span>
         <h1 className="serif text-5xl italic mb-6 text-slate-900">Technische Gegevens</h1>
         <p className="text-lg font-light text-slate-600 leading-relaxed">
-          Dit appartement werd degelijk gebouwd en is steeds met zorg onderhouden en geactualiseerd naar hedendaags comfort. Alles is van steen en beton.
+          Dit appartement (128.2m²) beschikt over een <span className="font-bold text-slate-900 uppercase tracking-tight">RUIME prive GARAGE (21m²) voor auto + motor/fietsen</span> met EV-lader en werd degelijk gebouwd met focus op duurzaamheid en comfort. Volledige technische gegevens en uitleg verkrijgbaar op aanvraag.
         </p>
       </div>
 
@@ -165,6 +166,30 @@ export default function Technical() {
             </div>
           </div>
 
+          <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+            <h3 className="text-xs font-black uppercase tracking-widest text-primary-600 mb-6">Prijszetting</h3>
+            <div className="space-y-4 max-w-md">
+              <div className="flex justify-between items-center">
+                <div className="flex flex-col">
+                  <span className="text-sm text-slate-700">Woning</span>
+                  <span className="text-[10px] text-slate-400 italic">Prijs per m² is 1911€ wat weinig is voor Geraardsbergen</span>
+                </div>
+                <span className="text-lg font-bold text-slate-900">€ 245.000,-</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <div className="flex flex-col">
+                  <span className="text-sm text-slate-700">Garage</span>
+                  <span className="text-[10px] text-slate-400 italic">niet afzonderlijk verkoopbaar</span>
+                </div>
+                <span className="text-lg font-bold text-slate-900">€ 30.000,-</span>
+              </div>
+              <div className="pt-4 border-t border-slate-100 flex justify-between items-center">
+                <span className="text-sm font-bold text-slate-900">Totaalprijs</span>
+                <span className="text-2xl font-black text-primary-600 italic">€ 275.000,-</span>
+              </div>
+            </div>
+          </div>
+
           <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group">
             <div className="flex items-center justify-between mb-6 relative z-10">
               <div>
@@ -204,11 +229,23 @@ export default function Technical() {
             <ul className="text-[13px] space-y-4 text-white/70 font-light">
               <li className="flex items-start space-x-3">
                 <span className="text-primary-400 font-bold">•</span>
+                <span>Ruime living 49m² met grote ramen en vloerverwarming.</span>
+              </li>
+              <li className="flex items-start space-x-3">
+                <span className="text-primary-400 font-bold">•</span>
                 <span>Video deurbel. Domotica voor-installatie.</span>
               </li>
               <li className="flex items-start space-x-3">
                 <span className="text-primary-400 font-bold">•</span>
-                <span>Grote garage met EV-lader + Kelder</span>
+                <span>Grote garage met EV-lader</span>
+              </li>
+              <li className="flex items-start space-x-3">
+                <span className="text-primary-400 font-bold">•</span>
+                <span>Garageput met takel en perslucht</span>
+              </li>
+              <li className="flex items-start space-x-3">
+                <span className="text-primary-400 font-bold">•</span>
+                <span>Grote kelder 60m² Werkplaats/fitness/cinema/man-cave</span>
               </li>
               <li className="flex items-start space-x-3">
                 <span className="text-primary-400 font-bold">•</span>

@@ -26,7 +26,7 @@ interface UploadQueueItem {
 const locations = [
   { icon: <MapPin className="w-4 h-4" />, name: "Centrum & Markt", distance: "5 min" },
   { icon: <Waves className="w-4 h-4" />, name: "Wandelpad langs Dender jachtpad", distance: "2 min" },
-  { icon: <Heart className="w-4 h-4" />, name: "Woonzorgcentra De Populier, Maretak en Hunnegem", distance: "5 min" },
+  { icon: <Heart className="w-4 h-4" />, name: "Woonzorgcentra De Populier, Maretak en Hunnegem", distance: "2MIN" },
   { icon: <Coffee className="w-4 h-4" />, name: "De Muur van Geraardsbergen", distance: "15 min" },
   { icon: <ShoppingBag className="w-4 h-4" />, name: "Winkels & Restaurants", distance: "3 min" },
   { icon: <TreePine className="w-4 h-4" />, name: "Provinciaal Domein De Gavers", distance: "15 min" },
@@ -334,8 +334,8 @@ export default function Surroundings() {
   const currentDisplayImages = imageList;
 
   return (
-    <div className="py-24 px-6 max-w-7xl mx-auto bg-slate-50 min-h-screen">
-      <div className="max-w-3xl mx-auto mb-20">
+    <div className="py-8 px-6 max-w-7xl mx-auto bg-slate-50 min-h-screen">
+      <div className="max-w-3xl mx-auto mb-6">
         <div className="text-center">
           <span className="text-primary-600 font-bold uppercase text-xs tracking-widest mb-2 block">De Locatie</span>
           <h1 className="serif text-5xl italic mb-8 text-slate-900 leading-tight">Ontdek de Omgeving</h1>
@@ -345,7 +345,7 @@ export default function Surroundings() {
         </div>
       </div>
 
-      <div className="mt-20">
+      <div className="mt-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 space-y-6 md:space-y-0">
           <div className="text-left">
             <span className="text-primary-600 font-bold uppercase text-xs tracking-widest mb-2 block">Impressie</span>
@@ -587,7 +587,7 @@ export default function Surroundings() {
         </div>
       </div>
 
-      <div className="mt-32 max-w-2xl mx-auto">
+      <div className="mt-10 max-w-2xl mx-auto">
         <div className="text-center mb-12">
           <span className="text-primary-600 font-bold uppercase text-xs tracking-widest mb-2 block">Mobiliteit</span>
           <h2 className="serif text-3xl italic text-slate-900">Nabije Voorzieningen</h2>

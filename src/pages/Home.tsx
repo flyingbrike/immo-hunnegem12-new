@@ -162,7 +162,7 @@ export default function Home() {
 
       <div id="property-details">
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-6 pt-12 pb-24">
+      <section className="max-w-7xl mx-auto px-6 pt-4 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -182,7 +182,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                <span className="text-primary-300 font-bold uppercase text-xs tracking-widest mb-4 block">RUIM APPARTEMENT TE KOOP IN GERAARDSBERGEN</span>
+                <span className="text-primary-300 font-bold uppercase text-xs tracking-widest mb-4 block">Luxe Appartement met Garage te Koop</span>
                 <h1 className="text-5xl md:text-6xl font-extrabold mb-4 leading-tight">
                   Modern Wonen met <br />
                   <span className="italic text-primary-200">Veel Ruimte</span>
@@ -233,6 +233,16 @@ export default function Home() {
                     <p className="text-lg font-bold">2 Slaapkamers</p>
                   </div>
                 </div>
+                <div className="flex items-center space-x-6">
+                  <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center">
+                    <span className="text-xl font-bold text-primary-300 italic font-serif">G</span>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-white/40">Parkeren</p>
+                    <p className="text-lg font-bold">RUIME prive GARAGE 21m²</p>
+                    <p className="text-[10px] text-white/60 font-medium tracking-wide">auto + motor/fietsen</p>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
@@ -243,7 +253,11 @@ export default function Home() {
                 data-html2canvas-ignore="true"
               >
                 <div className="relative z-10">
-                  <p className="text-xs font-bold uppercase tracking-widest mb-1">Interesse?</p>
+                  <div className="flex items-center space-x-2 mb-1">
+                    <p className="text-xs font-bold uppercase tracking-widest">Interesse?</p>
+                    <span className="w-1 h-1 bg-white/40 rounded-full"></span>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-primary-300">RUIME prive GARAGE 21m²</p>
+                  </div>
                   <p className="text-xl font-bold">Plan een Bezichtiging</p>
                 </div>
                 <ArrowRight className="w-8 h-8 relative z-10 group-hover:translate-x-2 transition-transform" />
@@ -279,7 +293,7 @@ export default function Home() {
       </section>
 
       {/* Intro Section */}
-      <section className="bg-white py-32">
+      <section className="bg-white py-10">
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
             <motion.div
@@ -292,9 +306,9 @@ export default function Home() {
               <h2 className="serif text-5xl mb-8 font-light italic text-slate-900 leading-tight">Zeldzame kans nabij domein Hunnegem</h2>
               <div className="text-slate-600 leading-relaxed space-y-6 font-light text-lg">
                 <p>
-                  Statig en verrassend ruim duplex appartement (128.2m²) met man-cave en goederelift in hartje Geraardsbergen. 
+                  Statig en verrassend ruim appartement met garage (128.2m²) met man-cave en goederelift in hartje Geraardsbergen. 
                   Bent u op zoek naar het comfort van een appartement, maar wilt u het ruimtelijke gevoel van een eengezinswoning niet missen? 
-                  Dit unieke duplex appartement van maar liefst 128.2m² combineert historisch karakter met modern wooncomfort, gelegen in het bruisende centrum van Geraardsbergen, de poort naar de prachtige Vlaamse Ardennen.
+                  Dit unieke appartement van maar liefst 128.2m² combineert historisch karakter met modern wooncomfort, gelegen in het bruisende centrum van Geraardsbergen, de poort naar de prachtige Vlaamse Ardennen.
                 </p>
                 
                 <div>
@@ -369,7 +383,7 @@ export default function Home() {
       </section>
 
       {/* Gallery Section Preview */}
-      <section className="bg-slate-50 py-32 border-t border-slate-200">
+      <section className="bg-slate-50 py-10 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-end mb-16">
             <div>

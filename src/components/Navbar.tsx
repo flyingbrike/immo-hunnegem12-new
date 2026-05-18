@@ -20,7 +20,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-8 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-8 h-12 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-3 group">
           <motion.div 
             whileHover={{ rotate: 10 }}
@@ -29,8 +29,10 @@ export default function Navbar() {
             EU
           </motion.div>
           <div className="flex flex-col">
-            <span className="font-black text-lg tracking-tighter text-primary-950 uppercase leading-none">DUPLEX APPARTEMENT</span>
-            <span className="text-[10px] uppercase tracking-[0.3em] text-primary-600 font-bold">Geraardsbergen</span>
+            <span className="font-serif font-black text-xl tracking-tighter text-primary-950 uppercase leading-none">
+              APPARTEMENT <span className="italic font-medium lowercase">met</span> GARAGE
+            </span>
+            <span className="text-[9px] uppercase tracking-[0.4em] text-primary-600 font-bold mt-1">Geraardsbergen</span>
           </div>
         </Link>
         
