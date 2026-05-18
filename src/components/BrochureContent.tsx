@@ -4,6 +4,8 @@ interface GalleryImage {
   id: string;
   url: string;
   title: string;
+  isHero?: boolean;
+  isSection?: boolean;
 }
 
 interface BrochureContentProps {
@@ -33,8 +35,13 @@ export default function BrochureContent({ heroImage, galleryImages }: BrochureCo
     { name: "Pairi Daiza", distance: "30 km" },
   ];
 
-  const detailsImage = galleryImages.find(img => 
-    (img.title && (img.title.toLowerCase().includes('achtergevel1') || img.title.toLowerCase().includes('achtergevel 1') || img.title.toLowerCase() === 'achtergevel1.jpg')) || 
+  const detailsImage = galleryImages.find(img => img.isSection)?.url || galleryImages.find(img => 
+    (img.title && (
+      img.title.toLowerCase().includes('achtergevel1') || 
+      img.title.toLowerCase().includes('achtergevel 1') || 
+      img.title.toLowerCase().includes('foto achtergevel1') ||
+      img.title.toLowerCase().includes('foto_achtergevel1')
+    )) || 
     img.url.toLowerCase().includes('achtergevel1')
   )?.url || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800";
 

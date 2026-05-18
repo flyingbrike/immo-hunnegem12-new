@@ -14,53 +14,89 @@ interface GalleryImage {
   title: string;
 }
 
+const DEFAULT_IMAGES = [
+  { id: 'def1', url: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1000", title: "Lichtrijke Woonkamer" },
+  { id: 'def2', url: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&q=80&w=1000", title: "Zuidgericht Terras" },
+  { id: 'def3', url: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=1000", title: "Moderne Badkamer" },
+  { id: 'def4', url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1000", title: "Keuken Detail" },
+];
+
 export default function Home() {
-  const [heroImage, setHeroImage] = useState("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=1200");
-  const [detailsImage, setDetailsImage] = useState("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1000");
-  const [imageList, setImageList] = useState<GalleryImage[]>([]);
+  const [heroImage, setHeroImage] = useState(DEFAULT_IMAGES[0].url);
+  const [detailsImage, setDetailsImage] = useState(DEFAULT_IMAGES[3].url);
+  const [imageList, setImageList] = useState<GalleryImage[]>(DEFAULT_IMAGES);
   const [isDownloading, setIsDownloading] = useState(false);
 
   useEffect(() => {
     const q = query(collection(db, 'gallery'));
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      const dbImages = snapshot.docs.map(doc => ({
+      let dbImages = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
-      })) as GalleryImage[];
+      })).filter((img: any) => img.url) as GalleryImage[];
+      
+      if (dbImages.length === 0) {
+        dbImages = DEFAULT_IMAGES;
+      }
       
       setImageList(dbImages);
 
       if (dbImages.length > 0) {
-        // Try to find the "achtergevel1" photo for hero
-        const backFacade = dbImages.find(img => 
-          (img.title && (img.title.toLowerCase().includes('achtergevel1') || img.title.toLowerCase().includes('achtergevel 1') || img.title.toLowerCase() === 'achtergevel1.jpg')) || 
-          img.url.toLowerCase().includes('achtergevel1')
-        ) || dbImages.find(img => 
-          (img.title && img.title.toLowerCase().includes('achtergevel')) || 
-          img.url.toLowerCase().includes('achtergevel')
-        );
-        
-        if (backFacade) {
-          setHeroImage(backFacade.url);
+        // 1. Try to find image manually marked as Hero
+        const pinnedHero = dbImages.find((img: any) => img.isHero);
+        if (pinnedHero) {
+          setHeroImage(pinnedHero.url);
         } else {
-          // Fallback to first image if no "achtergevel" found
-          setHeroImage(dbImages[0].url);
+          // Fallback to name-based or first image
+          const backFacade = dbImages.find(img => 
+            (img.title && (
+              img.title.toLowerCase().includes('achtergevel1') || 
+              img.title.toLowerCase().includes('achtergevel 1') || 
+              img.title.toLowerCase().includes('foto achtergevel1') ||
+              img.title.toLowerCase().includes('foto_achtergevel1')
+            )) || 
+            img.url.toLowerCase().includes('achtergevel1')
+          ) || dbImages.find(img => 
+            (img.title && img.title.toLowerCase().includes('achtergevel')) || 
+            img.url.toLowerCase().includes('achtergevel')
+          );
+          
+          if (backFacade) {
+            setHeroImage(backFacade.url);
+          } else {
+            setHeroImage(dbImages[0].url);
+          }
         }
 
-        // Try to find the "achtergevel" (main) photo for details section
-        const backFacade1 = dbImages.find(img => 
-          (img.title && img.title.toLowerCase() === 'achtergevel') || 
-          (img.title && img.title.toLowerCase().includes('achtergevel') && !img.title.toLowerCase().includes('achtergevel1')) ||
-          img.url.toLowerCase().includes('achtergevel') && !img.url.toLowerCase().includes('achtergevel1')
-        ) || dbImages.find(img => 
-          (img.title && (img.title.toLowerCase().includes('achtergevel1') || img.title.toLowerCase().includes('achtergevel 1'))) || 
-          img.url.toLowerCase().includes('achtergevel1')
-        );
+        // 2. Try to find image manually marked as Section
+        const pinnedSection = dbImages.find((img: any) => img.isSection);
+        if (pinnedSection) {
+          setDetailsImage(pinnedSection.url);
+        } else {
+          // Fallback to name-based or first image
+          const backFacade1 = dbImages.find(img => 
+            (img.title && img.title.toLowerCase() === 'achtergevel') || 
+            (img.title && img.title.toLowerCase().includes('achtergevel') && !img.title.toLowerCase().includes('achtergevel1')) ||
+            (img.url.toLowerCase().includes('achtergevel') && !img.url.toLowerCase().includes('achtergevel1'))
+          ) || dbImages.find(img => 
+            (img.title && (
+              img.title.toLowerCase().includes('achtergevel1') || 
+              img.title.toLowerCase().includes('achtergevel 1') ||
+              img.title.toLowerCase().includes('foto achtergevel1')
+            )) || 
+            img.url.toLowerCase().includes('achtergevel1')
+          );
 
-        if (backFacade1) {
-          setDetailsImage(backFacade1.url);
+          if (backFacade1) {
+            setDetailsImage(backFacade1.url);
+          }
         }
       }
+    }, (error) => {
+      console.warn("Firestore gallery access restricted on Home page:", error);
+      setImageList(DEFAULT_IMAGES);
+      // We don't call handleFirestoreError here to avoid potentially recursive error loops in a tight update cycle
+      // only if it's a non-quota error would we want a loud throw, but for quota we just fallback.
     });
 
     return () => unsubscribe();
@@ -91,7 +127,7 @@ export default function Home() {
         
         // Capture each page individually for better quality and reliable splitting
         const dataUrl = await domToPng(page, {
-          scale: 2,
+          scale: 1.5,
           backgroundColor: '#ffffff',
         });
 
@@ -101,6 +137,9 @@ export default function Home() {
         const pdfHeight = pdf.internal.pageSize.getHeight();
         
         pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        
+        // Give the UI a chance to breathe
+        await new Promise(resolve => setTimeout(resolve, 100));
       }
 
       pdf.save('Luxe-Brochure-Appartement-Geraardsbergen.pdf');
@@ -355,7 +394,7 @@ export default function Home() {
                 <img 
                   src={img.url} 
                   alt={img.title} 
-                  className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                 />
               </motion.div>
             ))}

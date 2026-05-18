@@ -8,7 +8,10 @@
         "url": { "type": "string", "description": "The URL of the image" },
         "title": { "type": "string", "description": "The title or caption of the image" },
         "createdAt": { "type": "string", "format": "date-time", "description": "When the image was added" },
-        "ownerId": { "type": "string", "description": "The ID of the user who added the image" }
+        "ownerId": { "type": "string", "description": "The ID of the user who added the image" },
+        "order": { "type": "number", "description": "Display order of the image" },
+        "isHero": { "type": "boolean", "description": "Whether this image is the main hero image on Home" },
+        "isSection": { "type": "boolean", "description": "Whether this image is the main section image on Home" }
       },
       "required": ["url", "title", "createdAt", "ownerId"]
     }
