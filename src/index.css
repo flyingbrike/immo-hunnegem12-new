@@ -11,8 +11,8 @@
   --color-primary-900: #312e81;
   --color-primary-950: #1e1b4b;
   
-  --color-slate-50: #f8fafc;
-  --color-slate-100: #f1f5f9;
+  --color-slate-50: #e0f2fe;
+  --color-slate-100: #dbeafe;
   --color-slate-200: #e2e8f0;
   --color-slate-300: #cbd5e1;
   --color-slate-400: #94a3b8;
@@ -47,6 +47,69 @@
   font-family: var(--font-serif);
 }
 
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+}
+
 .nav-item-active {
   @apply relative text-primary-600 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-primary-600;
+}
+
+/* Elegant Google Translate Dropdown Styling Overrides */
+.goog-te-gadget {
+  font-family: inherit !important;
+  font-size: 0px !important; /* Hides "Powered by Google" text */
+  color: transparent !important;
+}
+
+.goog-te-gadget .goog-te-combo {
+  padding: 4px 10px !important;
+  border-radius: 8px !important;
+  border: 1px solid #e2e8f0 !important; /* Slate 200 */
+  background-color: #f8fafc !important; /* Slate 50 */
+  color: #334155 !important; /* Slate 700 */
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  outline: none !important;
+  cursor: pointer !important;
+  font-family: var(--font-sans) !important;
+  transition: all 0.2s ease-in-out !important;
+  margin: 0 !important;
+  height: 28px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.goog-te-gadget .goog-te-combo:hover {
+  background-color: #f1f5f9 !important; /* Slate 100 */
+  color: #0f172a !important; /* Slate 900 */
+  border-color: #cbd5e1 !important; /* Slate 300 */
+}
+
+/* Hide annoying iframe and banner elements loaded by Google Translate */
+body {
+  top: 0px !important;
+}
+iframe.goog-te-banner-frame {
+  display: none !important;
+  visibility: hidden !important;
+}
+.goog-te-banner-frame, .goog-te-menu-frame {
+  display: none !important;
+}
+.goog-tooltip, .goog-tooltip:hover {
+  display: none !important;
+  visibility: hidden !important;
+}
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  box-shadow: none !important;
 }

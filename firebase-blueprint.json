@@ -14,6 +14,72 @@
         "isSection": { "type": "boolean", "description": "Whether this image is the main section image on Home" }
       },
       "required": ["url", "title", "createdAt", "ownerId"]
+    },
+    "TechnicalData": {
+      "title": "Technical Data",
+      "description": "Dynamic specs and content of the technical specifications page",
+      "type": "object",
+      "properties": {
+        "introText": { "type": "string", "description": "Introductory description text for the page" },
+        "specs": { "type": "array", "description": "Array of structures containing specifications with label and value" },
+        "stedenbouw": { "type": "array", "description": "Array of label-value objects for urban planning information" },
+        "overstroming": { "type": "array", "description": "Array of label-value objects for flood reports" },
+        "installaties": { "type": "array", "description": "Array of label-value objects for certificates" },
+        "priceSetting": { "type": "array", "description": "Array of label-value objects for price details like price per m², estimated price, asking price" },
+        "algemeen": { "type": "array", "description": "Array of label-value objects for general facts" },
+        "leefruimtes": { "type": "array", "description": "Array of label-value objects for living rooms dimensions" },
+        "extraRuimtes": { "type": "array", "description": "Array of label-value objects for utility dimensions" },
+        "nachtgedeelte": { "type": "array", "description": "Array of label-value objects for bedroom dimensions" },
+        "totals": { "type": "array", "description": "Array of label-value objects for area sums" },
+        "bijzonderheden": { "type": "array", "description": "Array of strings representing bullet details" },
+        "rooms": { "type": "array", "description": "Array of room details including id, name, size, description, and features list" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Timestamp of update" },
+        "updatedBy": { "type": "string", "description": "User UID who made the update" }
+      },
+      "required": ["introText", "updatedAt"]
+    },
+    "HomeData": {
+      "title": "Home Data",
+      "description": "Dynamic specs and text fields of the landing home page",
+      "type": "object",
+      "properties": {
+        "heroSubtitle": { "type": "string" },
+        "heroTitle": { "type": "string" },
+        "heroDesc": { "type": "string" },
+        "keyEnergyLabel": { "type": "string" },
+        "keySizeLabel": { "type": "string" },
+        "keyBedroomsLabel": { "type": "string" },
+        "keyParkingLabel": { "type": "string" },
+        "introSubtitle": { "type": "string" },
+        "introTitle": { "type": "string" },
+        "sec1Title": { "type": "string" },
+        "sec1Desc": { "type": "string" },
+        "sec2Title": { "type": "string" },
+        "sec3Title": { "type": "string" },
+        "sec3Desc": { "type": "string" },
+        "sec3Extra": { "type": "string" },
+        "sec4Title": { "type": "string" },
+        "sec4Desc": { "type": "string" },
+        "troevenTitle": { "type": "string" },
+        "troevenList": { "type": "array", "items": { "type": "string" } },
+        "footerQuote": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "updatedBy": { "type": "string" }
+      },
+      "required": ["heroTitle", "updatedAt"]
+    },
+    "ContactMessage": {
+      "title": "Contact Message",
+      "description": "Form submissions from a potential buyer or general inquiry",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Sender name" },
+        "email": { "type": "string", "description": "Sender email" },
+        "subject": { "type": "string", "description": "Subject of interest" },
+        "message": { "type": "string", "description": "Message context" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp when received" }
+      },
+      "required": ["name", "email", "message", "createdAt"]
     }
   },
   "firestore": {
@@ -24,6 +90,18 @@
     "surroundings_gallery": {
       "schema": "GalleryImage",
       "description": "Collection of images showing the surroundings/neighborhood"
+    },
+    "technical_data": {
+      "schema": "TechnicalData",
+      "description": "Dynamic data fields on the technical specifications page"
+    },
+    "home_data": {
+      "schema": "HomeData",
+      "description": "Dynamic data fields on the landing home page"
+    },
+    "contact_messages": {
+      "schema": "ContactMessage",
+      "description": "Submitted contact inquiries from users/visitors"
     }
   }
 }
