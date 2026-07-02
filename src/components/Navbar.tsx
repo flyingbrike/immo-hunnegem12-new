@@ -116,13 +116,6 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-0 left-0 w-full z-50">
-      {/* Page-Wide Announcement Banner */}
-      <div className="bg-amber-400 text-amber-950 text-xs sm:text-sm font-extrabold uppercase tracking-[0.05em] sm:tracking-[0.1em] h-12 flex items-center justify-center border-b border-amber-500 shadow-md select-none px-4 text-center overflow-x-auto whitespace-nowrap no-scrollbar">
-        <span>{dt("WEBSITE IN OPBOUW. Kortelings foto's en correcte data")}</span>
-        <span className="mx-3 opacity-60">•</span>
-        <span>{dt("Bezichtigingen mogelijk vanaf 7 juli.")}</span>
-      </div>
-
       <nav className="bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 h-14 flex items-center justify-between gap-2">
           {/* Mobile Menu Button - Left-aligned on mobile, hidden on desktop */}

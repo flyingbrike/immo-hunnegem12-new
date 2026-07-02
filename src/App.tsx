@@ -69,7 +69,7 @@ function AppContent() {
       <div className="min-h-screen flex flex-col bg-slate-50" dir={language === 'ar' ? 'rtl' : 'ltr'}>
         <Navbar />
         <WhatsAppButton />
-        <main className="flex-grow pt-[96px]">
+        <main className="flex-grow pt-[56px]">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/galerij" element={<Gallery />} />
